@@ -14,12 +14,12 @@
         <div v-if="tasks.length > 0" class="task-list">
             <div v-for="task in tasks" :key="task.id" class="task-item">
                 <span :class="{ completed: task.completed }">{{ task.todo }}</span>
-                <div>
-                    <button @click="toggleTaskCompletion(task)">
-                        {{ task.completed ? 'Desmarcar' : 'Completar' }}
-                    </button>
-                    <button @click="deleteTask(task)">Eliminar</button>
-                </div>
+               <div>
+    <button @click="toggleTaskCompletion(task)" class="toggle-button">
+        {{ task.completed ? 'Desmarcar' : 'Completar' }}
+    </button>
+    <button @click="deleteTask(task)" class="delete-button">Eliminar</button>
+</div>
             </div>
         </div>
     </div>
@@ -83,12 +83,23 @@ export default {
 }
 
 .add-button {
-    padding: 8px 12px;
-    border: none;
-    border-radius: 4px;
-    background-color: #007bff;
-    color: white;
-    cursor: pointer;
+  display: inline-block;
+  padding: 12px 30px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  background: linear-gradient(45deg, #c386af, #e89ec1); 
+  border: none;
+  border-radius: 25px;
+  text-decoration: none;
+  transition: background 0.3s ease, transform 0.2s;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.add-button:hover {
+  background: linear-gradient(45deg, #c7678e, #db8bb7); 
+  transform: scale(1.05); 
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
 }
 
 .task-list {
@@ -107,4 +118,34 @@ export default {
     text-decoration: line-through;
     color: gray;
 }
+
+.toggle-button, .delete-button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.toggle-button {
+    background-color: #4CAF50; /* Verde */
+    color: white;
+}
+
+.toggle-button:hover {
+    background-color: #45a049; /* Verde oscuro */
+    transform: scale(1.05); /* Efecto de aumento al pasar el cursor */
+}
+
+.delete-button {
+    background-color: #f44336; /* Rojo */
+    color: white;
+    margin-left: 10px; /* Espaciado entre botones */
+}
+
+.delete-button:hover {
+    background-color: #d32f2f; /* Rojo oscuro */
+}
 </style>
+
